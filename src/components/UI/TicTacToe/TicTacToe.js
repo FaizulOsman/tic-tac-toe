@@ -112,21 +112,71 @@ const TicTacToe = () => {
   useEffect(() => {
     if (!my) return;
     if (win || won) return;
-    while (true) {
-      const i = Math.round(Math.random() * 8);
-      if (!array[i]) {
-        const newArray = [...array];
-        if (now === 0) {
-          newArray[i] = "O";
-        } else {
-          newArray[i] = "X";
+    const newArray = [...array];
+    if (checkAiO(array[0], array[1], array[2])) newArray[2] = "O";
+    else if (checkAiO(array[1], array[2], array[0])) newArray[0] = "O";
+    else if (checkAiO(array[0], array[2], array[1])) newArray[1] = "O";
+    else if (checkAiO(array[3], array[4], array[5])) newArray[5] = "O";
+    else if (checkAiO(array[4], array[5], array[3])) newArray[3] = "O";
+    else if (checkAiO(array[3], array[5], array[4])) newArray[4] = "O";
+    else if (checkAiO(array[6], array[7], array[8])) newArray[8] = "O";
+    else if (checkAiO(array[7], array[8], array[6])) newArray[6] = "O";
+    else if (checkAiO(array[6], array[8], array[7])) newArray[7] = "O";
+    else if (checkAiO(array[0], array[3], array[6])) newArray[6] = "O";
+    else if (checkAiO(array[3], array[6], array[0])) newArray[0] = "O";
+    else if (checkAiO(array[0], array[6], array[3])) newArray[3] = "O";
+    else if (checkAiO(array[1], array[4], array[7])) newArray[7] = "O";
+    else if (checkAiO(array[4], array[7], array[1])) newArray[1] = "O";
+    else if (checkAiO(array[1], array[7], array[4])) newArray[4] = "O";
+    else if (checkAiO(array[2], array[5], array[8])) newArray[8] = "O";
+    else if (checkAiO(array[5], array[8], array[2])) newArray[2] = "O";
+    else if (checkAiO(array[2], array[8], array[5])) newArray[5] = "O";
+    else if (checkAiO(array[0], array[4], array[8])) newArray[8] = "O";
+    else if (checkAiO(array[4], array[8], array[0])) newArray[0] = "O";
+    else if (checkAiO(array[0], array[8], array[4])) newArray[4] = "O";
+    else if (checkAiO(array[2], array[4], array[6])) newArray[6] = "O";
+    else if (checkAiO(array[4], array[6], array[2])) newArray[2] = "O";
+    else if (checkAiO(array[2], array[6], array[4])) newArray[4] = "O";
+    else if (checkAiX(array[0], array[1], array[2])) newArray[2] = "O";
+    else if (checkAiX(array[1], array[2], array[0])) newArray[0] = "O";
+    else if (checkAiX(array[0], array[2], array[1])) newArray[1] = "O";
+    else if (checkAiX(array[3], array[4], array[5])) newArray[5] = "O";
+    else if (checkAiX(array[4], array[5], array[3])) newArray[3] = "O";
+    else if (checkAiX(array[3], array[5], array[4])) newArray[4] = "O";
+    else if (checkAiX(array[6], array[7], array[8])) newArray[8] = "O";
+    else if (checkAiX(array[7], array[8], array[6])) newArray[6] = "O";
+    else if (checkAiX(array[6], array[8], array[7])) newArray[7] = "O";
+    else if (checkAiX(array[0], array[3], array[6])) newArray[6] = "O";
+    else if (checkAiX(array[3], array[6], array[0])) newArray[0] = "O";
+    else if (checkAiX(array[0], array[6], array[3])) newArray[3] = "O";
+    else if (checkAiX(array[1], array[4], array[7])) newArray[7] = "O";
+    else if (checkAiX(array[4], array[7], array[1])) newArray[1] = "O";
+    else if (checkAiX(array[1], array[7], array[4])) newArray[4] = "O";
+    else if (checkAiX(array[2], array[5], array[8])) newArray[8] = "O";
+    else if (checkAiX(array[5], array[8], array[2])) newArray[2] = "O";
+    else if (checkAiX(array[2], array[8], array[5])) newArray[5] = "O";
+    else if (checkAiX(array[0], array[4], array[8])) newArray[8] = "O";
+    else if (checkAiX(array[4], array[8], array[0])) newArray[0] = "O";
+    else if (checkAiX(array[0], array[8], array[4])) newArray[4] = "O";
+    else if (checkAiX(array[2], array[4], array[6])) newArray[6] = "O";
+    else if (checkAiX(array[4], array[6], array[2])) newArray[2] = "O";
+    else if (checkAiX(array[2], array[6], array[4])) newArray[4] = "O";
+    else {
+      while (true) {
+        const i = Math.round(Math.random() * 8);
+        if (!array[i]) {
+          if (now === 0) {
+            newArray[i] = "O";
+          } else {
+            newArray[i] = "X";
+          }
+          break;
         }
         setNow((now + 1) % 2);
         setArray(newArray);
         setMy(false);
         setYou(false);
         enabled();
-        break;
       }
     }
   }, [my]);
