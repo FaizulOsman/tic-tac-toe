@@ -10,6 +10,7 @@ const TicTacToe = () => {
   const [id, setId] = useState(-1);
   const [xWon, setXWon] = useState(0);
   const [oWon, setOWon] = useState(0);
+  const [yes, setYes] = useState(1);
 
   const disabled = () => {
     const buttons = document.querySelectorAll(".my-btn");
@@ -29,7 +30,6 @@ const TicTacToe = () => {
     setArray(["", "", "", "", "", "", "", "", ""]);
     setNow(1);
     setMy(false);
-    setYou(false);
     setWin(false);
     setId(-1);
     enabled();
@@ -39,12 +39,12 @@ const TicTacToe = () => {
       setTimeout(() => {
         setWon("I Won!");
         setOWon(oWon + 1);
-      }, 1000);
+      }, 800);
     } else if (value === "X") {
       setTimeout(() => {
         setWon("You Won!");
         setXWon(xWon + 1);
-      }, 1000);
+      }, 800);
     } else if (value === "draw") setWon("Draw!");
     setMy(false);
   };
@@ -65,6 +65,13 @@ const TicTacToe = () => {
       array[8]
     );
   };
+  const checkAiO = (a, b, c) => {
+    return a === b && b !== c && b === "O" && c === "";
+  };
+  const checkAiX = (a, b, c) => {
+    return a === b && b !== c && b === "X" && c === "";
+  };
+
   useEffect(() => {
     if (check(array[0], array[1], array[2])) {
       disabled();
@@ -106,7 +113,7 @@ const TicTacToe = () => {
     if (!win && you) {
       setTimeout(() => {
         setMy(true);
-      }, 800);
+      }, 600);
     }
   }, [array, win, you]);
   useEffect(() => {
@@ -121,12 +128,7 @@ const TicTacToe = () => {
     else if (checkAiO(array[3], array[5], array[4])) newArray[4] = "O";
     else if (checkAiO(array[6], array[7], array[8])) newArray[8] = "O";
     else if (checkAiO(array[7], array[8], array[6])) newArray[6] = "O";
-    else if (array[4] === "X") {
-      if (array[0] === "") newArray[0] = "O";
-      else if (array[2] === "") newArray[2] = "O";
-      else if (array[6] === "") newArray[6] = "O";
-      else if (array[8] === "") newArray[8] = "O";
-    } else if (checkAiO(array[6], array[8], array[7])) newArray[7] = "O";
+    else if (checkAiO(array[6], array[8], array[7])) newArray[7] = "O";
     else if (checkAiO(array[0], array[3], array[6])) newArray[6] = "O";
     else if (checkAiO(array[3], array[6], array[0])) newArray[0] = "O";
     else if (checkAiO(array[0], array[6], array[3])) newArray[3] = "O";
@@ -166,7 +168,63 @@ const TicTacToe = () => {
     else if (checkAiX(array[2], array[4], array[6])) newArray[6] = "O";
     else if (checkAiX(array[4], array[6], array[2])) newArray[2] = "O";
     else if (checkAiX(array[2], array[6], array[4])) newArray[4] = "O";
-    else {
+    else if (array[4] === "") newArray[4] = "O";
+    else if (array[4] === "O" && array[3] === "" && array[5] === "")
+      newArray[3] = "O";
+    else if (array[4] === "O" && array[1] === "" && array[7] === "")
+      newArray[1] = "O";
+    else if (
+      array[4] === "O" &&
+      array[1] === "X" &&
+      array[5] === "X" &&
+      array[2] === ""
+    )
+      newArray[2] = "O";
+    else if (
+      array[4] === "O" &&
+      array[5] === "X" &&
+      array[7] === "X" &&
+      array[8] === ""
+    )
+      newArray[8] = "O";
+    else if (
+      array[4] === "O" &&
+      array[7] === "X" &&
+      array[3] === "X" &&
+      array[6] === ""
+    )
+      newArray[6] = "O";
+    else if (
+      array[4] === "O" &&
+      array[3] === "X" &&
+      array[1] === "X" &&
+      array[0] === ""
+    )
+      newArray[0] = "O";
+    else if (array[4] === "X" && yes % 2 !== 0 && array[0] === "") {
+      newArray[0] = "O";
+    } else if (array[4] === "X" && yes % 2 !== 0 && array[2] === "") {
+      newArray[2] = "O";
+      setYes(yes + 1);
+    } else if (array[4] === "X" && yes % 2 !== 0 && array[6] === "") {
+      newArray[6] = "O";
+      setYes(yes + 1);
+    } else if (array[4] === "X" && yes % 2 !== 0 && array[8] === "") {
+      newArray[8] = "O";
+      setYes(yes + 1);
+    } else if (array[4] === "X" && yes % 2 === 0 && array[1] === "") {
+      newArray[1] = "O";
+      setYes(yes + 1);
+    } else if (array[4] === "X" && yes % 2 === 0 && array[3] === "") {
+      newArray[3] = "O";
+      setYes(yes + 1);
+    } else if (array[4] === "X" && yes % 2 === 0 && array[5] === "") {
+      newArray[5] = "O";
+      setYes(yes + 1);
+    } else if (array[4] === "X" && yes % 2 === 0 && array[7] === "") {
+      newArray[7] = "O";
+      setYes(yes + 1);
+    } else {
       while (true) {
         const i = Math.round(Math.random() * 8);
         if (!array[i]) {
@@ -177,13 +235,13 @@ const TicTacToe = () => {
           }
           break;
         }
-        setNow((now + 1) % 2);
-        setArray(newArray);
-        setMy(false);
-        setYou(false);
-        enabled();
       }
     }
+    setNow((now + 1) % 2);
+    setArray(newArray);
+    setMy(false);
+    setYou(false);
+    enabled();
   }, [my]);
   useEffect(() => {
     if (id !== -1 && !array[id]) {
