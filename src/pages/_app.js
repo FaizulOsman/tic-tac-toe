@@ -4,6 +4,7 @@ import { store } from "@/redux/store";
 import { Toaster } from "react-hot-toast";
 // Imported Styles
 import "@/styles/globals.css";
+import "@/styles/components/TicTacToe.css";
 
 export default function App({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
