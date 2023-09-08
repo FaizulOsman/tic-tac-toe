@@ -121,7 +121,12 @@ const TicTacToe = () => {
     else if (checkAiO(array[3], array[5], array[4])) newArray[4] = "O";
     else if (checkAiO(array[6], array[7], array[8])) newArray[8] = "O";
     else if (checkAiO(array[7], array[8], array[6])) newArray[6] = "O";
-    else if (checkAiO(array[6], array[8], array[7])) newArray[7] = "O";
+    else if (array[4] === "X") {
+      if (array[0] === "") newArray[0] = "O";
+      else if (array[2] === "") newArray[2] = "O";
+      else if (array[6] === "") newArray[6] = "O";
+      else if (array[8] === "") newArray[8] = "O";
+    } else if (checkAiO(array[6], array[8], array[7])) newArray[7] = "O";
     else if (checkAiO(array[0], array[3], array[6])) newArray[6] = "O";
     else if (checkAiO(array[3], array[6], array[0])) newArray[0] = "O";
     else if (checkAiO(array[0], array[6], array[3])) newArray[3] = "O";
