@@ -207,23 +207,25 @@ const TicTacToe = () => {
   };
   return (
     <>
-      <div className="game-container d-flex flex-column justify-content-center align-items-center">
+      <div className="game-container flex flex-col justify-center items-center">
         <div className="turn">
           <div
-            className="your-turn"
-            style={now === 1 ? { borderBottom: "4px solid #14bdac" } : {}}
+            className={`your-turn ${
+              !win && now === 1 ? "border-b-4 border-teal-500" : ""
+            }`}
           >
-            <h1>Your Turn (X) : {xWon}</h1>
+            <h1 className="text-teal-500">Your Turn (X) : {xWon}</h1>
           </div>
           <div
-            className="my-turn"
-            style={now === 0 ? { borderBottom: "4px solid #14bdac" } : {}}
+            className={`my-turn ${
+              !win && now === 0 ? "border-b-4 border-teal-500" : ""
+            }`}
           >
-            <h1>My Turn (O) : {oWon}</h1>
+            <h1 className="text-teal-500">My Turn (O) : {oWon}</h1>
           </div>
         </div>
-        <div className="game row row-cols-3 m-0">
-          <div className="col border-bt border-rt">
+        <div className="game grid grid-cols-3">
+          <div className="col border-b border-r">
             <button
               style={array[0] === "O" ? style1 : style2}
               className="my-btn"
@@ -232,7 +234,7 @@ const TicTacToe = () => {
               {array[0]}
             </button>
           </div>
-          <div className="col border-bt border-rt">
+          <div className="col border-b border-r">
             <button
               style={array[1] === "O" ? style1 : style2}
               className="my-btn"
@@ -241,7 +243,7 @@ const TicTacToe = () => {
               {array[1]}
             </button>
           </div>
-          <div className="col border-bt">
+          <div className="col border-b">
             <button
               style={array[2] === "O" ? style1 : style2}
               className="my-btn"
@@ -250,7 +252,7 @@ const TicTacToe = () => {
               {array[2]}
             </button>
           </div>
-          <div className="col border-bt border-rt">
+          <div className="col border-b border-r">
             <button
               style={array[3] === "O" ? style1 : style2}
               className="my-btn"
@@ -259,7 +261,7 @@ const TicTacToe = () => {
               {array[3]}
             </button>
           </div>
-          <div className="col border-bt border-rt">
+          <div className="col border-b border-r">
             <button
               style={array[4] === "O" ? style1 : style2}
               className="my-btn"
@@ -268,7 +270,7 @@ const TicTacToe = () => {
               {array[4]}
             </button>
           </div>
-          <div className="col border-bt">
+          <div className="col border-b">
             <button
               style={array[5] === "O" ? style1 : style2}
               className="my-btn"
@@ -277,7 +279,7 @@ const TicTacToe = () => {
               {array[5]}
             </button>
           </div>
-          <div className="col border-rt">
+          <div className="col border-r">
             <button
               style={array[6] === "O" ? style1 : style2}
               className="my-btn"
@@ -286,7 +288,7 @@ const TicTacToe = () => {
               {array[6]}
             </button>
           </div>
-          <div className="col border-rt">
+          <div className="col border-r">
             <button
               style={array[7] === "O" ? style1 : style2}
               className="my-btn"
