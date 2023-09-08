@@ -35,11 +35,15 @@ const TicTacToe = () => {
   };
   const showWinner = (value) => {
     if (value === "O") {
-      setWon("I Won!");
-      setOWon(oWon + 1);
+      setTimeout(() => {
+        setWon("I Won!");
+        setOWon(oWon + 1);
+      }, 500);
     } else if (value === "X") {
-      setWon("You Won!");
-      setXWon(xWon + 1);
+      setTimeout(() => {
+        setWon("You Won!");
+        setXWon(xWon + 1);
+      }, 500);
     } else if (value === "draw") setWon("Draw!");
     setMy(false);
   };
@@ -245,7 +249,7 @@ const TicTacToe = () => {
             </button>
           </div>
         </div>
-        {win && (
+        {won && (
           <>
             <div className="won-container">
               <h1>{won}</h1>
