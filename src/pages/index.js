@@ -1,5 +1,11 @@
+import TicTacToe from "@/components/UI/TicTacToe/TicTacToe";
+
 const HomePage = () => {
-  return <>Hello world</>;
+  return (
+    <>
+      <TicTacToe />
+    </>
+  );
 };
 
 export default HomePage;
